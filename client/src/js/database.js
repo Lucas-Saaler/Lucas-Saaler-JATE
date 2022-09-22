@@ -30,7 +30,7 @@ export const getDb = async () => {
 };
 
 // Export a function we will use to PUT to the database.
-export const putDb = async (id, content) => {
+export const putDb = async (content) => {
   console.log('PUT to the database');
   // Create a connection to the database database and version we want to use.
   const jateDb = await openDB('jate', 1);
@@ -43,6 +43,7 @@ export const putDb = async (id, content) => {
   // Get confirmation of the request.
   const result = await request;
   console.log('🚀 - data saved to the database', result);
+  return result
 };
 
 initdb();
