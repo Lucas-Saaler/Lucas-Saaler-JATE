@@ -20,7 +20,7 @@ const pageCache = new CacheFirst({
   ],
 });
 
-offlineFallback({
+warmStrategyCache({
   urls: ['/index.html', '/'],
   strategy: pageCache,
 });
@@ -36,3 +36,9 @@ registerRoute(
     ],
   })
 );
+
+self.addEventListener('install', event => {
+  const file = 'index.html'
+  event.waitUntil(self.caches.open('workbox-offline-fallbacks')
+  .then(cache.addAll(file)))
+})
